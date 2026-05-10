@@ -81,7 +81,11 @@ function selectCard(id){
   location.hash = 'detail';
 }
 function renderMatrix(){
-  const families = uniq(allData.map(d=>d['계열']));
+  const families = uniq(allData.map(d=>d['계열'])).sort((a,b)=>{
+    const firstA = Math.min(...allData.filter(d=>d['계열']===a).map(d=>Number(d['계번호'])));
+    const firstB = Math.min(...allData.filter(d=>d['계열']===b).map(d=>Number(d['계번호'])));
+    return firstA - firstB;
+  });
   $('matrixGrid').innerHTML = families.map(f=>{
     const items = allData.filter(d=>d['계열']===f).sort((a,b)=>a['계번호']-b['계번호']);
     return `<article class="matrix-card"><h3>${escapeHtml(f)}</h3><div class="matrix-list">${items.map(d=>`<div class="matrix-item"><span>${d['계번호']}</span><span>${escapeHtml(d['한글명'])} · ${escapeHtml(d['정체자'])}</span></div>`).join('')}</div></article>`;
