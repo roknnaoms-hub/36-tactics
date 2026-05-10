@@ -76,7 +76,7 @@ function selectCard(id){
     <div class="detail-box"><h3>의미적 통찰</h3><p>${escapeHtml(d['의미적 통찰'])}</p></div>
     <div class="detail-box"><h3>전략 태그</h3><div class="chips">${makeChips(d['전략태그목록'])}</div></div>
     <div class="detail-box"><h3>적용 분야</h3><div class="chips">${makeChips(d['적용분야목록'])}</div></div>
-    <div class="detail-box full"><h3>참고 URL</h3><p><a href="${escapeHtml(d['공통 출처 URL'])}" target="_blank" rel="noreferrer">공통 출처</a> · <a href="${escapeHtml(d['보조 출처 URL'])}" target="_blank" rel="noreferrer">보조 출처</a></p></div>`;
+    <div class="detail-box full"><h3>참고 URL</h3><p><a href="${escapeHtml(d['공통 출처 URL'])}" target="_blank" rel="noreferrer">공통 출처</a></p></div>`;
   renderCards();
   location.hash = 'detail';
 }

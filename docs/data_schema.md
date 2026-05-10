@@ -17,7 +17,6 @@
 | 의미적 통찰 | 전략적·조직적 함의 | 반복된 정상상태는 감시자의 경계심을... |
 | 적용분야 | 활용 가능한 분야 | 작전기만·정보보안 |
 | 공통 출처 URL | 공통 참고 URL | https://en.wikipedia.org/wiki/Thirty-Six_Stratagems |
-| 보조 출처 URL | 보조 참고 URL | http://wengu.tartarie.com/wg/wengu.php?l=36ji |
 | 전략태그목록 | 웹표시용 배열 필드 | ["기만", "은폐"] |
 | 적용분야목록 | 웹표시용 배열 필드 | ["작전기만", "정보보안"] |
 
