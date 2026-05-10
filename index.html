@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>삼십육계 전략 데이터 포털</title>
+  <meta name="description" content="삼십육계 36개 전략을 검색, 필터링, 비교할 수 있는 GitHub Pages용 정적 웹포털" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="topbar">
+      <div class="brand">三十六計 <span>Strategy Data Portal</span></div>
+      <div class="navlinks">
+        <a href="#catalog">데이터셋</a>
+        <a href="#matrix">전략 매트릭스</a>
+        <a href="#sources">출처</a>
+        <a href="data/삼십육계_확장데이터셋_v1.1_출처_통찰.csv" download>CSV 다운로드</a>
+      </div>
+    </nav>
+    <section class="hero-inner">
+      <p class="eyebrow">전략 · 고사 · 현대적 적용</p>
+      <h1>삼십육계 확장 데이터셋 웹포털</h1>
+      <p class="subtitle">36개 계책을 계열별로 탐색하고, 원전 구절·대표 고사·전략 태그·현대적 해석·의미적 통찰을 한 화면에서 비교합니다.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#catalog">데이터 탐색</a>
+        <a class="button" href="data/삼십육계_확장데이터셋_v1.1_출처_통찰.xlsx" download>Excel 다운로드</a>
+        <a class="button" href="data/삼십육계_확장데이터셋_v1.1_출처_통찰.jsonl" download>JSONL 다운로드</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="stats" aria-label="요약 통계">
+      <div class="stat-card"><strong id="totalCount">36</strong><span>전체 계책</span></div>
+      <div class="stat-card"><strong id="familyCount">6</strong><span>전략 계열</span></div>
+      <div class="stat-card"><strong id="tagCount">-</strong><span>전략 태그</span></div>
+      <div class="stat-card"><strong>v1.1</strong><span>데이터셋 버전</span></div>
+    </section>
+
+    <section id="catalog" class="panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Search & Filter</p>
+          <h2>삼십육계 데이터셋</h2>
+        </div>
+        <button id="resetBtn" class="button small">필터 초기화</button>
+      </div>
+      <div class="filters">
+        <label>검색어
+          <input id="searchInput" type="search" placeholder="예: 기만, 반객위주, 손빈, 협상" />
+        </label>
+        <label>계열
+          <select id="familyFilter"><option value="">전체</option></select>
+        </label>
+        <label>적용분야
+          <select id="domainFilter"><option value="">전체</option></select>
+        </label>
+        <label>정렬
+          <select id="sortSelect">
+            <option value="number">계번호순</option>
+            <option value="family">계열순</option>
+            <option value="name">한글명순</option>
+          </select>
+        </label>
+      </div>
+      <div class="result-line"><span id="resultCount">36</span>개 항목 표시</div>
+      <div id="cardGrid" class="card-grid"></div>
+    </section>
+
+    <section id="matrix" class="panel dark-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Strategic Matrix</p>
+          <h2>6대 계열별 전략 구조</h2>
+        </div>
+      </div>
+      <div id="matrixGrid" class="matrix-grid"></div>
+    </section>
+
+    <section id="detail" class="panel detail-panel">
+      <p class="eyebrow">Selected Stratagem</p>
+      <h2 id="detailTitle">계책을 선택하면 상세 내용이 표시됩니다.</h2>
+      <div id="detailBody" class="detail-body empty">좌측 또는 상단 카드에서 항목을 선택하십시오.</div>
+    </section>
+
+    <section id="sources" class="panel">
+      <p class="eyebrow">Sources & Dataset</p>
+      <h2>데이터 출처 및 활용 방식</h2>
+      <div class="source-grid">
+        <article>
+          <h3>포털 데이터</h3>
+          <p>본 포털은 업로드된 <strong>삼십육계 확장데이터셋 v1.1</strong>의 CSV/JSONL/XLSX 파일을 기준으로 구성된 정적 웹사이트입니다.</p>
+        </article>
+        <article>
+          <h3>공통 출처</h3>
+          <p><a href="https://en.wikipedia.org/wiki/Thirty-Six_Stratagems" target="_blank" rel="noreferrer">Thirty-Six Stratagems 개요</a></p>
+          <p><a href="http://wengu.tartarie.com/wg/wengu.php?l=36ji" target="_blank" rel="noreferrer">Wengu 36 Ji 원문 자료</a></p>
+        </article>
+        <article>
+          <h3>GitHub Pages</h3>
+          <p>이 폴더 전체를 GitHub 저장소에 업로드한 뒤 Pages 배포 소스를 <code>main / root</code>로 설정하면 바로 공개 포털로 사용할 수 있습니다.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>삼십육계 전략 데이터 포털 · Static GitHub Pages Edition · UTF-8 Korean Ready</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
