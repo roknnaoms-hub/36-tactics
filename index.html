@@ -1,110 +1,41 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>21세기 현대인을 위한 삼심육계 웹포털</title>
-  <meta name="description" content="21세기 현대인을 위한 삼심육계 36개 전략 검색, 필터링, 비교용 정적 웹포털" />
-  <link rel="stylesheet" href="assets/style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="병법36계 온톨로지 지식그래프. 36개 계책과 전략 원리, 상황, 분야, 고사와 출처의 관계를 탐색합니다.">
+<meta name="theme-color" content="#122832">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>병법36계 · 온톨로지 지식그래프</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23122832'/%3E%3Ctext x='32' y='44' text-anchor='middle' fill='%23daca9e' font-size='37'%3E36%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=2.0.0">
+<script src="assets/graph.js?v=2.0.0" defer></script>
+<script src="assets/app.js?v=2.0.0" defer></script>
 </head>
 <body>
-  <header class="hero">
-    <nav class="topbar">
-      <div class="brand">三十六計 <span>Strategy Data Portal</span></div>
-      <div class="navlinks">
-        <a href="#catalog">데이터셋</a>
-        <a href="#matrix">전략 매트릭스</a>
-        <a href="#sources">출처</a>
-      </div>
-    </nav>
-    <section class="hero-inner">
-      <p class="eyebrow">전략 · 고사 · 현대적 적용</p>
-      <h1>21세기 현대인을 위한 삼심육계 웹포털</h1>
-      <p class="subtitle">36개 계책을 계열별로 탐색하고, 원전 구절·대표 고사·전략 태그·현대적 해석·의미적 통찰을 한 화면에서 비교합니다.</p>
-      <div class="hero-actions">
-        <a class="button primary" href="#catalog">데이터 탐색</a>
-      </div>
-    </section>
-  </header>
-
-  <main>
-    <section class="stats" aria-label="요약 통계">
-      <div class="stat-card"><strong id="totalCount">36</strong><span>전체 계책</span></div>
-      <div class="stat-card"><strong id="familyCount">6</strong><span>전략 계열</span></div>
-      <div class="stat-card"><strong id="tagCount">-</strong><span>전략 태그</span></div>
-      <div class="stat-card"><strong>v1.1</strong><span>데이터셋 버전</span></div>
-    </section>
-
-    <section id="catalog" class="panel">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Search & Filter</p>
-          <h2>삼십육계 데이터셋</h2>
-        </div>
-        <button id="resetBtn" class="button small">필터 초기화</button>
-      </div>
-      <div class="filters">
-        <label>검색어
-          <input id="searchInput" type="search" placeholder="예: 기만, 반객위주, 손빈, 협상" />
-        </label>
-        <label>계열
-          <select id="familyFilter"><option value="">전체</option></select>
-        </label>
-        <label>적용분야
-          <select id="domainFilter"><option value="">전체</option></select>
-        </label>
-        <label>정렬
-          <select id="sortSelect">
-            <option value="number">계번호순</option>
-            <option value="family">계열순</option>
-            <option value="name">한글명순</option>
-          </select>
-        </label>
-      </div>
-      <div class="result-line"><span id="resultCount">36</span>개 항목 표시</div>
-      <div id="cardGrid" class="card-grid"></div>
-    </section>
-
-    <section id="matrix" class="panel dark-panel">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Strategic Matrix</p>
-          <h2>6대 계열별 전략 구조</h2>
-        </div>
-      </div>
-      <div id="matrixGrid" class="matrix-grid"></div>
-    </section>
-
-    <section id="detail" class="panel detail-panel">
-      <p class="eyebrow">Selected Stratagem</p>
-      <h2 id="detailTitle">계책을 선택하면 상세 내용이 표시됩니다.</h2>
-      <div id="detailBody" class="detail-body empty">좌측 또는 상단 카드에서 항목을 선택하십시오.</div>
-    </section>
-
-    <section id="sources" class="panel">
-      <p class="eyebrow">Sources & Dataset</p>
-      <h2>데이터 출처 및 활용 방식</h2>
-      <div class="source-grid">
-        <article>
-          <h3>포털 데이터</h3>
-          <p>본 포털은 업로드된 <strong>삼십육계 확장데이터셋 v1.1</strong>의 CSV/JSONL/XLSX 파일을 기준으로 구성된 정적 웹사이트입니다.</p>
-        </article>
-        <article>
-          <h3>공통 출처</h3>
-          <p><a href="https://en.wikipedia.org/wiki/Thirty-Six_Stratagems" target="_blank" rel="noreferrer">Thirty-Six Stratagems 개요</a></p>
-        </article>
-        <article>
-          <h3>GitHub Pages</h3>
-          <p>이 폴더 전체를 GitHub 저장소에 업로드한 뒤 Pages 배포 소스를 <code>main / root</code>로 설정하면 바로 공개 포털로 사용할 수 있습니다.</p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>21세기 현대인을 위한 삼심육계 웹포털 · Static GitHub Pages Edition · UTF-8 Korean Ready</p>
-  </footer>
-
-  <script src="assets/app.js"></script>
-</body>
-</html>
+<a href="#main" class="skip">본문으로 이동</a>
+<header class="topbar"><a class="brand" href="#graph"><span class="seal">三十<br>六計</span><span>병법36계<small>STRATEGY KNOWLEDGE ATLAS</small></span></a><div class="top-right"><span class="edition">ONTOLOGY EDITION · 2.0</span><a href="https://github.com/roknnaoms-hub/36-tactics" target="_blank" rel="noopener noreferrer" class="repo-link">GitHub ↗</a></div></header>
+<section class="hero"><div><p class="eyebrow">전략의 목록에서, 관계의 지도로</p><h1>계책을 읽고,<br><em>전략의 연결</em>을 발견하다.</h1><p class="intro">36개의 지혜를 계열·원리·상황으로 연결했습니다.<br>관계를 따라가며 같은 전략의 다른 쓰임을 살펴보십시오.</p></div><div class="hero-stats" aria-label="온톨로지 통계"><div><strong>36</strong><span>계책</span></div><div><strong>6</strong><span>전략 계열</span></div><div><strong id="nodeCount">—</strong><span>지식 개체</span></div><div><strong id="edgeCount">—</strong><span>의미 관계</span></div><p><i></i> 원천 데이터 v1.1 기반 · 관계 모델 v2.0</p></div></section>
+<nav class="tabs" aria-label="주요 화면"><a href="#graph" class="active" data-tab="graph">01 <span>지식그래프</span></a><a href="#catalog" data-tab="catalog">02 <span>36계 탐색</span></a><a href="#architecture" data-tab="architecture">03 <span>온톨로지 구조</span></a></nav>
+<main id="main">
+<div id="loadError" class="error" role="alert" hidden>데이터를 불러오지 못했습니다. 연결 상태를 확인하고 새로고침해 주십시오. 로컬에서는 웹서버로 실행해야 합니다. <button id="retry">다시 불러오기</button></div>
+<section id="graph" class="tab-panel">
+<div class="section-heading"><div><p class="eyebrow">EXPLORE THE CONNECTIONS</p><h2>전략 지식그래프</h2></div><p>노드를 선택하면 연결 관계와 근거가 열립니다.</p></div>
+<div class="workspace">
+<aside class="filter-panel"><div class="panel-title"><h3>탐색 설정</h3><button id="resetGraph" class="text-button">초기화</button></div><label>계책·개념 찾기<input id="graphSearch" type="search" placeholder="예: 위위구조, 기만, 협상" autocomplete="off"></label><div id="searchResults" class="search-results" aria-live="polite"></div>
+<label>보기 방식<select id="graphMode"><option value="overview">계열 지도 · 6계열과 36계</option><option value="semantic">원리 지도 · 공통 원리 탐색</option><option value="focus">선택 중심 · 직접 연결 보기</option></select></label>
+<label>계열 범위<select id="graphFamily"><option value="">전체 6계열</option></select></label>
+<div id="focusSettings" hidden><label>연결 깊이<select id="depth"><option value="1">1단계 · 직접 관계</option><option value="2">2단계 · 이웃의 이웃</option></select></label></div>
+<fieldset id="relationFilters"><legend>표시할 관계</legend></fieldset>
+<div class="filter-tip"><strong>탐색 가이드</strong><p>처음에는 계열별로 살펴보세요. 계책 선택 후 <b>이 노드 중심으로</b>를 누르면 고사와 출처까지 연결됩니다.</p><p>점선은 편집 해석으로 추가한 관계입니다.</p></div>
+</aside>
+<div class="graph-main"><div class="graph-toolbar"><div><strong id="viewTitle">계열 지도</strong><span id="viewCount" aria-live="polite">불러오는 중…</span></div><div class="graph-buttons"><button id="zoomOut" aria-label="그래프 축소">−</button><button id="zoomIn" aria-label="그래프 확대">＋</button><button id="fitGraph" title="화면에 맞춤">맞춤</button><button id="fullGraph" aria-label="그래프 전체 화면">전체</button></div></div><div id="graphCanvas" class="graph-canvas"><svg id="network" role="group" aria-label="병법36계 지식그래프. 노드에 Tab 키로 이동하고 Enter 키로 선택할 수 있습니다."></svg><div class="graph-watermark">三十六計<span>지식의 연결, 전략의 발견</span></div><p id="graphEmpty" class="graph-empty" hidden>표시할 관계가 없습니다. 관계 필터 또는 계열 범위를 변경하십시오.</p></div><div id="graphLegend" class="legend"></div><div class="graph-foot"><span>드래그: 이동 · 휠/버튼: 확대 · 노드: 선택</span><span id="graphNotice">계열은 원천 데이터의 분류입니다.</span></div></div>
+<aside class="detail-panel" aria-label="선택한 개체 상세"><div id="nodeDetail" aria-live="polite"><p class="eyebrow">SELECT A NODE</p><h3>연결을 탐색해 보세요</h3><p>계책 또는 개념을 선택하면 이곳에 상세 정보가 표시됩니다.</p></div></aside>
+</div>
+<div class="path-panel"><div><p class="eyebrow">RELATIONSHIP PATH</p><h3>두 계책은 어떻게 연결될까요?</h3><p>계열·원리·태그·분야를 경유하는 최단 연결입니다. 고사·공통 출처는 경로에서 제외합니다.</p></div><form id="pathForm"><label>출발 계책<select id="pathStart"></select></label><span class="path-arrow">→</span><label>도착 계책<select id="pathEnd"></select></label><button class="button primary" type="submit">관계 경로 찾기</button></form><div id="pathResult" class="path-result" aria-live="polite"></div></div>
+</section>
+<section id="catalog" class="tab-panel" hidden><div class="section-heading"><div><p class="eyebrow">THE THIRTY-SIX STRATAGEMS</p><h2>병법36계 탐색</h2></div><span>원문 · 고사 · 현대적 해석 · 의미적 통찰</span></div><div class="catalog-filters"><label>검색어<input id="searchInput" type="search" placeholder="계책명, 원문, 고사, 적용 분야"></label><label>계열<select id="familyFilter"><option value="">전체 계열</option></select></label><label>적용 분야<select id="domainFilter"><option value="">전체 분야</option></select></label><label>정렬<select id="sortSelect"><option value="number">계번호순</option><option value="name">한글명순</option><option value="family">계열순</option></select></label><button id="resetCatalog" class="button">초기화</button></div><div class="catalog-count"><strong id="resultCount">36</strong>개의 계책</div><div id="cardGrid" class="card-grid"></div><div id="matrix" class="family-section"><h3>6대 계열별 전략 구조</h3><div id="matrixGrid" class="matrix-grid"></div></div></section>
+<section id="architecture" class="tab-panel" hidden><div class="section-heading"><div><p class="eyebrow">FROM DATA TO KNOWLEDGE</p><h2>온톨로지 기반 아키텍처</h2></div><span>개체 · 관계 · 근거를 분리한 지식 모델</span></div><div class="architecture-flow"><article><span>01 / SOURCE</span><h3>원천 데이터</h3><p>36계 원문·고사·태그·해석<br>기존 v1.1 데이터 보존</p></article><article><span>02 / SEMANTIC MODEL</span><h3>온톨로지 모델</h3><p>8개 클래스 · 7개 관계 유형<br>고유 ID · 정의역 · 치역 · 근거</p></article><article><span>03 / GRAPH ENGINE</span><h3>관계 탐색</h3><p>인접 관계 · 필터 · 최단 경로<br>추출 관계와 편집 해석 구분</p></article><article><span>04 / EXPERIENCE</span><h3>지식 시각화</h3><p>계열 지도 · 원리 지도 · 중심 탐색<br>상세 설명 · 근거 · 원천 출처</p></article></div><div class="architecture-body"><article class="white-panel"><h3>개체 유형 <small>Classes</small></h3><div id="classList" class="class-list"></div></article><article class="white-panel"><h3>관계 스키마 <small>Object properties</small></h3><p class="muted">모든 관계의 출발 유형은 계책(Stratagem)입니다.</p><div id="schemaList" class="schema-list"></div></article></div><article class="white-panel triple-panel"><div class="panel-title"><div><h3>관계 명제와 근거</h3><p class="muted">주어–관계–목적어 구조의 실제 데이터입니다.</p></div><label>명제 검색<input id="tripleSearch" type="search" placeholder="계책·개념·관계 검색"></label></div><div class="table-scroll"><table><thead><tr><th>주어</th><th>관계</th><th>목적어</th><th>근거 구분</th></tr></thead><tbody id="tripleBody"></tbody></table></div><div class="table-pagination"><button id="prevTriples">이전</button><span id="triplePage"></span><button id="nextTriples">다음</button></div></article><article class="source-note" id="sources"><h3>해석의 범위와 출처</h3><p>계열·태그·분야·고사·참고 URL은 기존 데이터에서 추출했습니다. <strong>전략 원리와 적용 상황은 연결 탐색을 위한 편집 해석</strong>이며, 고전 원문에 명시된 분류나 실증적으로 검증된 적용 조건이 아닙니다.</p><p>고사에는 역사 기록과 문학·전승이 함께 포함되어 있습니다. 상세 화면의 출처유형을 확인하십시오. 원전 구절과 고사의 문헌 대조는 이번 구조 전환에 포함하지 않았으며, 공통 참고 URL은 개별 고사의 직접 증거를 뜻하지 않습니다.</p><p>이 사이트는 정적 지식그래프를 탐색합니다. AI 자동 판단·실행, 외부 API 호출 또는 사용량 기반 유료 서비스 연결을 추가하지 않았습니다.</p><p><a href="https://github.com/roknnaoms-hub/36-tactics/blob/main/docs/ontology_architecture.md" target="_blank" rel="noopener noreferrer">아키텍처 및 데이터 관리 문서 ↗</a> · <a href="https://en.wikipedia.org/wiki/Thirty-Six_Stratagems" target="_blank" rel="noopener noreferrer">원천 데이터의 공통 참고자료 ↗</a></p></article></section>
+</main><footer><span>三十六計 · 병법36계 온톨로지 지식그래프</span><span>연결을 이해하고, 맥락을 판단하다. <b>v2.0</b></span></footer>
+<noscript><p class="error">지식그래프를 이용하려면 JavaScript를 활성화해 주십시오.</p></noscript>
+</body></html>
