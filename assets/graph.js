@@ -17,7 +17,7 @@
     setData(nodes,edges,mode,selected,relationLabels){this.data={nodes,edges,mode,selected,relationLabels};this.layout();this.draw();this.fit();}
     layout(){
       const {nodes,edges,mode,selected}=this.data;const rect=this.svg.getBoundingClientRect();if(!rect.width)return;
-      this.width=rect.width<520?700:1000;this.height=Math.max(680,this.width*rect.height/rect.width);this.svg.setAttribute('viewBox',`0 0 ${this.width} ${this.height}`);this.pos=new Map();
+      this.width=mode==='overview'&&rect.width<520?700:1000;this.height=Math.max(680,this.width*rect.height/rect.width);this.svg.setAttribute('viewBox',`0 0 ${this.width} ${this.height}`);this.pos=new Map();
       if(!nodes.length)return;
       if(mode==='overview'){
         const families=nodes.filter(n=>n.type==='Family');const cols=families.length===1?1:(rect.width<520?2:3);const rows=Math.ceil(families.length/cols);const cellW=this.width/cols;const cellH=this.height/rows;
@@ -44,7 +44,7 @@
         // Separate label boxes in the final viewport without shrinking their spacing.
         for(let k=0;k<180;k++){
           for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-            const a=pts[i],b=pts[j],dx=b.x-a.x,dy=b.y-a.y,ox=115-Math.abs(dx),oy=74-Math.abs(dy);
+            const a=pts[i],b=pts[j],dx=b.x-a.x,dy=b.y-a.y,ox=Math.max(115,this.width/rect.width*72)-Math.abs(dx),oy=Math.max(74,this.width/rect.width*30)-Math.abs(dy);
             if(ox>0&&oy>0){if(ox<oy){const step=(ox+.5)*.51*(dx>=0?1:-1);a.x-=step;b.x+=step;}else{const step=(oy+.5)*.51*(dy>=0?1:-1);a.y-=step;b.y+=step;}}
           }
           for(const p of pts){p.x=Math.max(65,Math.min(935,p.x));p.y=Math.max(50,Math.min(this.height-65,p.y));}
@@ -53,7 +53,7 @@
       }
     }
     draw(){
-      if(!this.pos)return;this.scene.replaceChildren();const {nodes,edges,relationLabels}=this.data;const edgeGroup=el('g'),nodeGroup=el('g');this.scene.append(edgeGroup,nodeGroup);this.nodeEls=new Map();this.edgeEls=new Map();
+      if(!this.pos)return;const pxScale=this.width/this.svg.getBoundingClientRect().width;for(const p of this.pos.values())p.r=Math.max(p.r,pxScale*7);this.scene.replaceChildren();const {nodes,edges,relationLabels}=this.data;const edgeGroup=el('g'),nodeGroup=el('g');this.scene.append(edgeGroup,nodeGroup);this.nodeEls=new Map();this.edgeEls=new Map();
       const defs=el('defs');const marker=el('marker',{id:'arrow',markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:'auto',markerUnits:'userSpaceOnUse'});marker.append(el('path',{d:'M0,0 L7,3.5 L0,7',fill:'#8da8ab',opacity:'.55'}));defs.append(marker);this.scene.prepend(defs);
       for(const e of edges){const a=this.pos.get(e.source),b=this.pos.get(e.target);if(!a||!b)continue;const dx=b.x-a.x,dy=b.y-a.y,d=Math.max(1,Math.hypot(dx,dy));const attrs={x1:a.x+dx/d*(a.r+3),y1:a.y+dy/d*(a.r+3),x2:b.x-dx/d*(b.r+5),y2:b.y-dy/d*(b.r+5)};const line=el('line',{...attrs,class:`edge ${e.status==='interpretation'?'interpretation':''}`,'marker-end':'url(#arrow)'});const hit=el('line',{...attrs,stroke:'transparent','stroke-width':12,fill:'none',class:'edge-hit','data-edge':e.id});const title=el('title');title.textContent=relationLabels[e.relation]+': '+e.evidence;hit.append(title);hit.style.cursor='pointer';hit.addEventListener('click',()=>{if(!this.wasDragged)this.onEdge(e.id);this.wasDragged=false;});edgeGroup.append(line,hit);this.edgeEls.set(e.id,line);
         if(this.data.mode==='focus'&&nodes.length<=18){const text=el('text',{x:(a.x+b.x)/2,y:(a.y+b.y)/2-6,class:'edge-label'});text.textContent=relationLabels[e.relation];edgeGroup.append(text);}
